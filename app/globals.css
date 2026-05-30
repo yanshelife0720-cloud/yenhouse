@@ -1,0 +1,265 @@
+/* ════════════════════════════════════════════
+   燕舍 Yen House — 全域設計系統
+   奶油暖光 · 微朦朧 · 精品住宅感
+   ════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@200;300;400;500&display=swap");
+
+:root {
+  /* 色彩系統 — 暖光奶油 */
+  --cream: #f5f0e8;
+  --cream-light: #faf7f1;
+  --cream-warm: #f0e9dd;
+  --beige: #e6dccb;
+  --sand: #d9cbb3;
+  --taupe: #b8a88f;
+  --warm-gold: #c4a06a;
+  --gold-soft: #d4b886;
+  --wood: #cdb89a;
+  --ink: #3a342b;
+  --ink-soft: #6b6356;
+  --ink-light: #948b7c;
+  --white-warm: #fffdf9;
+
+  /* 字體 */
+  --font-serif: "Noto Serif TC", "Cormorant Garamond", serif;
+  --font-display: "Cormorant Garamond", "Noto Serif TC", serif;
+  --font-sans: "Noto Sans TC", "Inter", sans-serif;
+
+  /* 陰影 — 柔和 */
+  --shadow-soft: 0 8px 40px rgba(120, 100, 70, 0.08);
+  --shadow-medium: 0 20px 60px rgba(120, 100, 70, 0.12);
+  --shadow-glow: 0 0 60px rgba(196, 160, 106, 0.25);
+
+  /* 玻璃 */
+  --glass-bg: rgba(255, 253, 249, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
+
+/* 暖光背景氛圍 */
+.warm-glow-bg {
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 50% at 70% 20%, rgba(212, 184, 134, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(230, 220, 203, 0.4), transparent 50%),
+    var(--cream);
+}
+
+/* 玻璃擬態卡片 */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+}
+
+/* 微朦朧光暈 */
+.soft-blur-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 高級按鈕 */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.4rem;
+  background: linear-gradient(135deg, var(--warm-gold), var(--gold-soft));
+  color: var(--white-warm);
+  border: none;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 30px rgba(196, 160, 106, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 44px rgba(196, 160, 106, 0.45), var(--shadow-glow);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.4rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink);
+  border: 1px solid rgba(184, 168, 143, 0.4);
+  border-radius: 100px;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-ghost:hover {
+  transform: translateY(-3px);
+  border-color: var(--warm-gold);
+  box-shadow: var(--shadow-soft);
+}
+
+/* 區塊容器 */
+.section {
+  position: relative;
+  padding: 7rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+/* 滑動進場動畫 */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 慢速漂浮 */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(2deg); }
+}
+
+/* Loading 動畫 */
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+@keyframes drawIn {
+  from { opacity: 0; letter-spacing: 0.6em; }
+  to { opacity: 1; letter-spacing: 0.15em; }
+}
+
+/* 滾動條 */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--taupe); }
+
+/* 響應式 */
+@media (max-width: 768px) {
+  .section { padding: 4.5rem 1.5rem; }
+  body { line-height: 1.7; }
+}
+
+/* ═══ 後台 CMS 樣式 ═══ */
+.admin-body {
+  background: #faf7f1;
+  font-family: var(--font-sans);
+}
+.admin-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--beige);
+  border-radius: 12px;
+  background: var(--white-warm);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: all 0.3s ease;
+}
+.admin-input:focus {
+  outline: none;
+  border-color: var(--warm-gold);
+  box-shadow: 0 0 0 3px rgba(196, 160, 106, 0.12);
+}
+.admin-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+.admin-card {
+  background: var(--white-warm);
+  border: 1px solid var(--beige);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+.admin-btn {
+  padding: 0.7rem 1.6rem;
+  background: linear-gradient(135deg, var(--warm-gold), var(--gold-soft));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+.admin-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(196,160,106,0.35); }
+.admin-btn-ghost {
+  padding: 0.7rem 1.6rem;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--beige);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.admin-btn-ghost:hover { border-color: var(--taupe); color: var(--ink); }
+.admin-btn-danger {
+  padding: 0.5rem 1.1rem;
+  background: transparent;
+  color: #b5654a;
+  border: 1px solid #e0c4ba;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+.admin-btn-danger:hover { background: #b5654a; color: white; }

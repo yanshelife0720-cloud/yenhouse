@@ -1,0 +1,79 @@
+// Prisma schema — 燕舍 Yen House CMS 資料庫結構
+// 預設使用 SQLite（本機開發），部署到 Vercel 時改為 Postgres（見部署說明）
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 管理員帳號
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String // bcrypt 加密後的密碼
+  createdAt DateTime @default(now())
+}
+
+// 前台文字內容（鍵值對形式，方便後台編輯任意欄位）
+model Content {
+  id        String   @id @default(cuid())
+  key       String   @unique // 例如 hero_title, hero_subtitle, about_text...
+  label     String // 後台顯示用的中文名稱
+  value     String   @db.Text
+  group     String   @default("general") // 分組：hero / about / why / cta
+  sort      Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+// 四大服務項目
+model Service {
+  id        String   @id @default(cuid())
+  title     String
+  summary   String   @db.Text // 簡短說明
+  detail    String   @db.Text // 詳細內容
+  icon      String   @default("home") // icon 識別字
+  imageUrl  String? // 服務圖片
+  sort      Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 空間案例作品
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  summary     String   @db.Text
+  beforeImage String? // Before 圖片
+  afterImage  String? // After 圖片
+  category    String   @default("住宅空間") // 分類標籤
+  sort        Int      @default(0)
+  visible     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 媒體圖片庫
+model Media {
+  id        String   @id @default(cuid())
+  url       String // 圖片網址（Vercel Blob）
+  name      String // 檔名
+  size      Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+// 聯絡資訊（單筆，固定 id）
+model Contact {
+  id        String   @id @default("main")
+  line      String   @default("")
+  instagram String   @default("")
+  facebook  String   @default("")
+  threads   String   @default("")
+  email     String   @default("")
+  phone     String   @default("")
+  updatedAt DateTime @updatedAt
+}
