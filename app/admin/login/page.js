@@ -62,9 +62,7 @@ export default function LoginPage() {
           {loading ? "登入中..." : "登 入"}
         </button>
 
-        <div style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.75rem", color: "var(--ink-light)" }}>
-          預設帳號 admin · 密碼 admin123
-        </div>
+        
       </div>
     </div>
   );
