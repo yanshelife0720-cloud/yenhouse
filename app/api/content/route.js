@@ -10,7 +10,15 @@ export async function GET() {
 
 export async function PUT(req) {
   if (!(await getSession())) return NextResponse.json({ error: "未授權" }, { status: 401 });
-  const updates = await req.json(); // [{key, value}, ...]
-  await Promise.all(updates.map((u) => prisma.content.update({ where: { key: u.key }, data: { value: u.value } })));
+  const updates = await req.json();
+  await Promise.all(
+    updates.map((u) =>
+      prisma.content.upsert({
+        where: { key: u.key },
+        update: { value: u.value },
+        create: { key: u.key, value: u.value, group: "hero", label: u.key, sort: 99 },
+      })
+    )
+  );
   return NextResponse.json({ ok: true });
 }
