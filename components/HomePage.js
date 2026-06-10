@@ -108,7 +108,7 @@ export default function HomePage({ data }) {
               </div>
             </div>
             <div className="hero-img" style={{ position: "relative", animation: "float 8s ease-in-out infinite" }}>
-              <div className="glass" style={{ borderRadius: 24, overflow: "hidden", aspectRatio: "4/5", boxShadow: "var(--shadow-medium)" }}>
+              <div className="glass" style={{ borderRadius: 24, overflow: "hidden", aspectRatio: "4/3", boxShadow: "var(--shadow-medium)" }}>
                 {heroImage ? (
                   <img src={heroImage} alt="Hero" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 ) : (
